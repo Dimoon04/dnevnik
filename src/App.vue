@@ -1,12 +1,19 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+    
     <router-view/>
   </div>
 </template>
+<script>
+import {store} from './store/index'
+export default{
+  data(){
+    return{
+      user: store.state.user
+    }
+  }
+}
+</script>
 
 <style>
 #app {
