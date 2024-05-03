@@ -38,7 +38,14 @@ export const store = new Vuex.Store({
           console.log(error)
       }
     },
-
+    async signout(){
+      try {
+          await firebase.auth().signOut();
+          store.commit('SET_USER', null)
+      } catch (error) {
+          console.error("Ошибка при выходе из системы:", error);
+      }
+    }
   },
 })
 

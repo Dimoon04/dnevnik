@@ -1,28 +1,19 @@
 <template>
-	<div class="roditel">
-		
-		<div class="body">
-			
-			<div class="wrapper" >
-				<form action="">
-					<h1>Войти</h1>
-					<div class="input-box">
-						<input v-model="authInput.txtEmail" type="text" placeholder="Имя пользователя" required>
-						<i class='bx bx-user'></i>
-					</div>
-					<div class="input-box">
-						<input v-model="authInput.txtPassword" type="password" placeholder="Введите пароль" required>
-						<i class='bx bxs-lock-alt'></i>
-					</div>
-					
-						<button @click="login()" class="btn">Войти</button>
-					<div class="register-link">
-						<p>Ещё не зарегистрированы? <a href="#">Регистрация</a></p><!--вставить ссылку-->
-					</div>
-				</form>
-			</div>
+	<form action="">
+		<h1>Войти</h1>
+		<div class="input-box">
+			<input v-model="authInput.txtEmail" type="text" placeholder="Имя пользователя" required>
+			<i class='bx bx-user'></i>
 		</div>
-	</div>
+		<div class="input-box">
+			<input v-model="authInput.txtPassword" type="password" placeholder="Введите пароль" required>
+			<i class='bx bxs-lock-alt'></i>
+		</div>
+			<button @click="login()" class="btn">Войти</button>
+		<div class="register-link">
+			<p>Ещё не зарегистрированы? <router-link to="/register">Зарегистрироваться</router-link></p><!--вставить ссылку-->
+		</div>
+	</form>
 </template>
 
 <script>
@@ -46,7 +37,7 @@ export default {
             try {
               await store.dispatch('login', { email:this.authInput.txtEmail, password:this.authInput.txtPassword })
               if (this.user!=null){
-                this.$router.push('/home')
+                this.$router.push('/rate')
                 console.log("успешно")
                 // messege 
               }
@@ -65,36 +56,7 @@ export default {
 </script>
 
 <style>
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: "Poppins", sans-serif;
-}
-
-.body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	background: url('@/assets/background.png') no-repeat;
-	background-size: cover;
-	background-position: center;
-}
-
-.wrapper {
-	/* display: flex; */
-	width: 420px;
-	background: transparent;
-	border: 2px solid rgba(255, 255, 255, .2);
-	backdrop-filter: blur(20px);
-	box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-	color: #fff;
-	border-radius: 10px;
-	padding: 30px 40px;
-}
-
-.wrapper h1 {
+/* .wrapper h1 {
 	font-size: 36px;
 	text-align: center;
 }
@@ -178,5 +140,5 @@ export default {
 
 .register-link p a:hover{
 	text-decoration: underline;
-}
+} */
 </style>
