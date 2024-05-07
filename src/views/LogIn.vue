@@ -38,12 +38,14 @@ export default {
               await store.dispatch('login', { email:this.authInput.txtEmail, password:this.authInput.txtPassword })
               if (this.user!=null){
                 this.$router.push('/rate')
-                console.log("успешно")
+                // console.log("успешно")
                 // messege 
               }
             }catch(error){
-              console.log(error.code)
-              console.log('ошибочно')
+            //   console.log(error.code)
+            //   console.log('ошибочно')
+
+
             //   this.$message({
             //     message: 'Неверный логин или пароль!',
             //     type: 'warning'

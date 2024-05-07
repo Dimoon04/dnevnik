@@ -9,6 +9,12 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    name: 'rate-students',
+    meta:{layout:'main'},
+    component: () => import('../views/RateStudents.vue')
+  },
+  {
+    path: '/login',
     name: 'login',
     meta: {layout:'empty'},
     component: () => import('../views/LogIn.vue')
@@ -19,6 +25,7 @@ const routes = [
     meta:{layout:'empty'},
     component: () => import('../views/RegisTer.vue')
   },
+  
   {
     path: '/rate',
     name: 'rate',

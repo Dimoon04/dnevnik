@@ -25,8 +25,8 @@ export const store = new Vuex.Store({
     }),
 
     async login(context,{email, password}){
-      console.log(email)
-      console.log(password)
+      // console.log(email)
+      // console.log(password)
       const promise = await firebase.auth().signInWithEmailAndPassword(email, password);
       try{
           if (promise){
@@ -35,7 +35,7 @@ export const store = new Vuex.Store({
           throw new Error('error')
           }
       }catch(error){
-          console.log(error)
+          // console.log(error)
       }
     },
     async signout(){
@@ -43,7 +43,7 @@ export const store = new Vuex.Store({
           await firebase.auth().signOut();
           store.commit('SET_USER', null)
       } catch (error) {
-          console.error("Ошибка при выходе из системы:", error);
+          // console.error("Ошибка при выходе из системы:", error);
       }
     }
   },

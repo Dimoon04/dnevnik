@@ -5,9 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "vk-miniapps-deploy"
   },
   "dependencies": {
+    "@vkontakte/vk-miniapps-deploy": "^0.1.7",
+    "@vkontakte/vk-tunnel": "^0.2.0",
     "core-js": "^3.8.3",
     "element-ui": "^2.4.5",
     "firebase": "^10.8.1",

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {store} from '../store/index'
+// import {store} from '../store/index'
 
 export default {
   name: 'HomeView',
@@ -23,7 +23,7 @@ export default {
   },
   methods:{
     sost(){
-      console.log("состояние входа",store.state.user.email)
+      // console.log("состояние входа",store.state.user.email)
     }
   },
   watch:{

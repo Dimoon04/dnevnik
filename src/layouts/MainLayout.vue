@@ -1,7 +1,14 @@
 <template>
     <div>
         <div class="header">
-            <div class="side-nav">
+            <div class="side-nav" v-if="!userCondition">
+                <ul>
+                    <li>
+                        <router-link to="/login" class="routeLink">Войти</router-link>
+                    </li>
+                </ul>
+            </div>
+            <div class="side-nav" v-else>
                 <div class="user">
                     <i class="el-icon-user "></i>
                     <div>
@@ -28,12 +35,16 @@
 <script>
 import {store} from '../store/index'
 export default {
-    data:()=>({
-        email:"",
-    }),
+    
+    // data:()=>({
+    //     email:"",
+    // }),
     computed:{
-         userMail(){
+        userMail(){
             return store.state.user && store.state.user.email;
+        },
+        userCondition(){
+            return store.state.user
         }
     },
     methods:{
