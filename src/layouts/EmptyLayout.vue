@@ -14,6 +14,12 @@
 }
 
 #body {
+	z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -21,10 +27,11 @@
 	background: url('../assets/background.png') no-repeat;
 	background-size: cover;
 	background-position: center;
+	
 }
 
 .wrapper {
-        width: 420px;
+    width: 420px;
 	background: transparent;
 	border: 2px solid rgba(255, 255, 255, .2);
 	backdrop-filter: blur(20px);

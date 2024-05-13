@@ -11,12 +11,9 @@
             <i class='bx bxs-lock-alt'></i>
         </div>
         
-        <div class="remember-forgot">
-            <label><input type="checkbox">Запомнить пароль </label>
-        </div>
-        <form action="menu.html" target="_blank">
-            <button class="btn"> Зарегистрироваться</button>
-        </form>	
+        <div class="register-link">
+			<p>Зарегистрированы? <router-link to="/login">Войти</router-link></p><!--вставить ссылку-->
+		</div>
     </form>
 </template>
 <style>

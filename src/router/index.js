@@ -10,38 +10,62 @@ const routes = [
   {
     path: '/',
     name: 'rate-students',
-    meta:{layout:'main'},
+    meta:{layout:'main',requiresAuth:false},
+    beforeEnter: (to, from, next) => {
+      document.title = 'Оценки'
+      next()
+    },
     component: () => import('../views/RateStudents.vue')
   },
   {
     path: '/login',
     name: 'login',
-    meta: {layout:'empty'},
+    meta: {layout:'empty',requiresAuth:false},
+    beforeEnter: (to, from, next) => {
+      document.title = 'Вход'
+      next()
+    },
     component: () => import('../views/LogIn.vue')
   },
   {
     path: '/register',
     name: 'register',
-    meta:{layout:'empty'},
+    meta:{layout:'empty',requiresAuth:false, },
+    beforeEnter: (to, from, next) => {
+      document.title = 'Регистрация'
+      next()
+    },
     component: () => import('../views/RegisTer.vue')
   },
   
   {
     path: '/rate',
     name: 'rate',
-    meta:{layout:'main'},
+    meta:{layout:'main',requiresAuth:true},
+    beforeEnter: (to, from, next) => {
+      document.title = 'Оценки'
+      next()
+    },
     component: () => import('../views/RateView.vue')
   },
   {
     path: '/shedule',
     name: 'shedule',
-    meta:{layout:'main'},
+    meta:{layout:'main',requiresAuth:true},
+    beforeEnter: (to, from, next) => {
+      document.title = 'Расписание'
+      next()
+    },
     component: () => import('../views/SheduleView.vue')
   },
   {
     path: '/homework',
     name: 'homework',
-    meta:{layout:'main'},
+    meta:{layout:'main',requiresAuth:true},
+    beforeEnter: (to, from, next) => {
+      document.title = 'Домашние задания'
+      next()
+    },
     component: () => import('../views/HomeWork.vue')
   }
 ]
@@ -66,25 +90,28 @@ window.onload = function() {
     store.commit('SET_USER',user)
   }
 
-  // router.beforeEach((to, from, next) => {
-  //   if (to.path !== '/' && store.state.user == null){
-  //     next({ path: '/' })
-  //     alert('нельзяы')
-  //   } 
-  //   else next()
-  // })
+  
   router.beforeEach((to, from, next) => {
-    if (to.path !== '/' && store.state.user == null) {
-        if (to.path !== '/') {
-            next({ path: '/' })
-        } else {
-            next()
-            alert('нельзя')
-        }
+    const isLoggedIn = !!store.state.user;
+    if (to.meta.requiresAuth && !isLoggedIn) {
+      next('/');
+      alert('Вы не можете перейти на эту страницу без авторизации.');
     } else {
-        next()
+      next();
     }
-})
+  })
+//   router.beforeEach((to, from, next) => {
+//     if (to.path !== '/' && store.state.user == null) {
+//         if (to.path !== '/') {
+//             next({ path: '/' })
+//         } else {
+//             next()
+//             alert('нельзя')
+//         }
+//     } else {
+//         next()
+//     }
+// })
 
 };
 
