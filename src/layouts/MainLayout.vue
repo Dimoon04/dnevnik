@@ -9,12 +9,12 @@
                         <div class="user">
                             <i class="el-icon-user "></i>
                             <div>
-                                <p>Вы не авторизированы</p>
+                                <span class="hidden-xs-only" v-if="!isXsBreakpoint">Вы не авторизованы</span> 
                             </div>
                         </div>
                         <div class="btn-out">
                             <ul>
-                                <li class="list"><router-link to="/login" class="routeLink"><img src="./images/logout.png" alt=""><b>Войти</b></router-link></li>
+                                <li class="list"><router-link to="/login" class="routeLink"><img src="./images/logout.png" alt=""><span class="hidden-xs-only" v-if="!isXsBreakpoint">Войти</span> </router-link></li>
                             </ul>
                         </div>
                         
@@ -33,7 +33,8 @@
                                     <img src="./images/dashboard.png">
                                     <span class="hidden-xs-only" v-if="!isXsBreakpoint">Оценки</span> 
                                 </router-link></li>
-                                <li class="list"><router-link to="/shedule" class="routeLink"><img src="./images/members.png"><span v-if="!isXsBreakpoint">Расписание</span> </router-link></li>
+                                <li class="list"><router-link to="/list-students" class="routeLink"><img src="./images/file.png"><span v-if="!isXsBreakpoint">Ученики</span> </router-link></li>
+                                <li class="list"><router-link to="/shedule" class="routeLink"><img src="./images/members.png" ><span v-if="!isXsBreakpoint">Расписание</span> </router-link></li>
                                 <li class="list"><router-link to="/homework" class="routeLink"><img src="./images/reports.png"><span v-if="!isXsBreakpoint">Домашние задания</span></router-link></li>
                             </ul>
                         </div>
@@ -47,24 +48,35 @@
                 </div>
                 </el-col>
                 <el-col :xs="21" :sm="20" :md="19" :lg="20" :xl="1" style="margin: 0; padding: 0;">
-                    <div>
+                    <div class="bottom-ui">
                         <router-view></router-view>
-                    </div>
+                        <BottomView/>  
+                    </div>  
                 </el-col>
             </el-row>           
         </div>
     </div>   
 </template>
 <script>
+import BottomView from '../components/BottomView.vue'
 import {store} from '../store/index'
+
 export default {
-    
-    // data:()=>({
-    //     email:"",
-    // }),
+    data(){
+        return{
+            myDivWidth:0
+        }
+    },
+    components:{
+      BottomView  
+    },
+    mounted() {
+        this.myDivWidth = this.$refs.myDiv.clientWidth;
+    },
     computed:{
+        
         isXsBreakpoint() {
-            return this.$refs.myDiv.clientWidth < 767; // adjust the breakpoint value according to your needs
+            return this.myDivWidth < 767; // adjust the breakpoint value according to your needs
         },
         userMail(){
             return store.state.user && store.state.user.email;
@@ -74,6 +86,7 @@ export default {
         }
     },
     methods:{
+        
         signout(){
             store.dispatch('signout')
             this.$router.push('/')
@@ -90,6 +103,10 @@ export default {
 	box-sizing: border-box;
 	font-family: 'Poppins', sans-serif;
     color: #2c3e50;
+}
+.bottom-ui{
+    height: 100vh; /* Установите желаемую высоту контейнера */
+    overflow-y: auto;
 }
 .rows{
     height: 100%;
@@ -127,7 +144,7 @@ export default {
     
 }
 .side-nav-vverh{
-    height: 40%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

@@ -28,6 +28,16 @@ const routes = [
     component: () => import('../views/LogIn.vue')
   },
   {
+    path: '/test',
+    name: 'test',
+    meta: {layout:'main',requiresAuth:false},
+    beforeEnter: (to, from, next) => {
+      document.title = 'test'
+      next()
+    },
+    component: () => import('../views/TestView.vue')
+  },
+  {
     path: '/register',
     name: 'register',
     meta:{layout:'empty',requiresAuth:false, },
@@ -48,6 +58,17 @@ const routes = [
     },
     component: () => import('../views/RateView.vue')
   },
+  {
+    path: '/list-students',
+    name: 'list',
+    meta:{layout:'main',requiresAuth:true},
+    beforeEnter: (to, from, next) => {
+      document.title = 'Ученики'
+      next()
+    },
+    component: () => import('../views/ListStydents.vue')
+  },
+  
   {
     path: '/shedule',
     name: 'shedule',
