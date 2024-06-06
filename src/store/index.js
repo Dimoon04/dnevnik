@@ -153,7 +153,7 @@ export const store = new Vuex.Store({
           // console.log(error)
       }
     },
-    async registerUser({ commit }, { name, password }) {
+    async registerUser({ commit }, { password }) {
       try {
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(password, password);
         const user = userCredential.user;
