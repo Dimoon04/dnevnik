@@ -11,7 +11,7 @@
       </el-table>
     </div>
     <div class="formHhomework">
-      <h1>Добавить домашнее задание</h1>
+      <h3>Добавить домашнее задание</h3>
       <div class="form-row">
         <div class="input-group">
           <label for="date">Дата</label>
@@ -32,6 +32,8 @@
           <label for="task">Задание</label>
           <input type="text" id="wednesday" v-model="addHomeWork.task" />
         </div>
+      </div>
+      <div class="form-row">
         <div class="input-group">
           <label for="task">Дата проверки</label>
           <el-date-picker
@@ -85,21 +87,25 @@ export default {
 }
 </script>
 <style>
-.table_homework{
+.table_homework {
   background-color: #fff;
   width: 79vw;
   margin: 20px;
   padding: 10px;
 }
+
 .homework-container {
-  height: 100vh; /* Установите желаемую высоту контейнера */
-  overflow-y: auto; /* Включает вертикальный скроллинг */
+  height: 100vh;
+  overflow-y: auto;
+  width: 100%;
+  padding-bottom: 10vh;
 }
 
 .homework-content {
   padding: 20px 0; /* Добавляет отступы для лучшего отображения */
 }
-.formHhomework{
+
+.formHhomework {
   margin: 20px;
   display: flex;
   flex-direction: column;
@@ -107,19 +113,22 @@ export default {
   background-color: #fff;
   padding: 20px;
 }
+
 .form-row {
   display: flex;
   width: 60vw;
   align-items: center;
   gap: 1rem;
+  flex-direction: row;
 }
+
 .input-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  
   gap: 0.5rem;
 }
+
 input,
 select {
   width: 20vmax;
@@ -127,19 +136,6 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
-  
-}
-
-@media (max-width>768px) {
-  
-input,
-select {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  width: 14vw;
-}
 }
 
 @media (max-width: 768px) {
@@ -148,12 +144,12 @@ select {
     align-items: flex-start;
   }
   input,
-select {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
+  select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%; /* Установите ширину на 100% для мобильных устройств */
+  }
 }
 </style>

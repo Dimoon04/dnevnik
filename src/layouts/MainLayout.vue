@@ -49,8 +49,8 @@
                 </el-col>
                 <el-col :xs="21" :sm="20" :md="19" :lg="20" :xl="1" style="margin: 0; padding: 0;">
                     <div class="bottom-ui">
-                        <router-view></router-view>
-                        <BottomView/>  
+                        <router-view ></router-view>
+                        <!-- <BottomView/>   -->
                     </div>  
                 </el-col>
             </el-row>           
@@ -58,7 +58,7 @@
     </div>   
 </template>
 <script>
-import BottomView from '../components/BottomView.vue'
+// import BottomView from '../components/BottomView.vue'
 import {store} from '../store/index'
 
 export default {
@@ -68,7 +68,7 @@ export default {
         }
     },
     components:{
-      BottomView  
+    //   BottomView  
     },
     mounted() {
         this.myDivWidth = this.$refs.myDiv.clientWidth;
@@ -105,9 +105,14 @@ export default {
     color: #2c3e50;
 }
 .bottom-ui{
-    height: 100vh; /* Установите желаемую высоту контейнера */
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    /* height: 100%;
+    overflow-y: auto;  */
 }
+/* .router-view{
+    flex-grow: 1;
+} */
 .rows{
     height: 100%;
 }
@@ -190,6 +195,30 @@ export default {
     cursor: pointer;
 }
 
+
+@media (max-width: 768px) {
+  .side-nav {
+    padding: 15px;
+  }
+  .user {
+    font-size: 1.5vmax;
+  }
+  .el-icon-user {
+    font-size: 4vmax;
+  }
+  .list {
+    padding: 5px;
+  }
+  .routeLink {
+    font-size: 1.5vmax;
+  }
+  .routeLink img {
+    width: 3vmax;
+  }
+  .btn-out {
+    font-size: 1.5vmax;
+  }
+}
 
 
 </style>

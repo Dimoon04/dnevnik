@@ -1,4 +1,5 @@
 <template>
+  <div class='footer-end'>
     <el-footer>
       <div class="footer-container">
         <div class="footer-content">
@@ -11,7 +12,9 @@
           </div>
         </div>
       </div>
-    </el-footer>
+    </el-footer>  
+  </div>
+    
   </template>
   
   <script>
@@ -21,13 +24,20 @@
   </script>
   
   <style scoped>
+  .footer-end{
+    flex-grow: 1;
+    /* flex-shrink: 0; */
+  }
   .el-footer {
     background-color: #ffffff;
     color: #272727;
-    padding: 20px 0;
+    height: 100%;
+    /* padding: 20px 0; */
   }
   
   .footer-container {
+    flex-shrink: 0;
+
     max-width: 1200px;
     margin: 0 auto;
   }
@@ -44,12 +54,12 @@
   }
   
   .logo {
-    height: 40px;
-    margin-right: 20px;
+    height: 2vmax;
+    margin-right: 2vw;
   }
   
   .copyright {
-    font-size: 14px;
+    font-size: 1.3vmax;
   }
   
   .right-content {

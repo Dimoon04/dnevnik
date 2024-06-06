@@ -144,18 +144,19 @@ import {mapState} from "vuex"
 </script>
 
 <style>
-
+.shedule-container {
+    height: 100vh;
+  overflow-y: auto;
+  width: 100%;
+  padding-bottom: 10vh;
+  }
 .table_shedule{
   background-color: #fff;
   width: 79vw;
   margin: 20px;
   padding: 10px;
 }
-  .shedule-container {
-    padding: 10px;
-    /* Установите желаемую высоту контейнера */
-    overflow-y: auto; /* Включает вертикальный скроллинг */
-  }
+  
   .btn-clearShedule{
     margin: 10px;
   }

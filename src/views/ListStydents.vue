@@ -76,87 +76,67 @@
   }
   </script>
   <style>
-  .table_rate{
-    background-color: #fff;
-    width: 79vw;
-    margin: 20px;
+  .list-container {
     padding: 10px;
+    height: 100vh; /* Установите желаемую высоту контейнера */
+    overflow-y: auto; /* Включает вертикальный скроллинг */
   }
   
+  .table_rate {
+    background-color: #fff;
+    /* width: 90%; */
+    margin: 20px;
+    /* padding: 10px; */
+  }
   
+  .formAddShedule {
+    margin: 20px;
+  }
   
-  
-  
-    .list-container {
-      padding: 10px;
-      height: 100vh; /* Установите желаемую высоту контейнера */
-      overflow-y: auto; /* Включает вертикальный скроллинг */
-    }
-    .btn-clearShedule{
-      margin: 10px;
-    }
-    .formAddShedule{
-      margin: 20px; 
-    }
-    #fio{
-      width: 100%
-    }
-  
-  
-  
-    .form-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      background-color: #fff;
-      padding: 20px;
-    }
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #fff;
+    padding: 20px;
+  }
   
   .form-row {
     display: flex;
-    width: 80vw;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
   }
   
   .input-group {
     display: flex;
-    
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+    width: 100%;
   }
+  
   input,
   select {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
-    
+    width: 100%;
   }
   
-  @media (max-width>768px) {
-    
-  input,
-  select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-    width: 14vw;
-  }
-  }
-  
-    input,
-  select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
+  @media (max-width: 768px) {
+    .form-row {
+      flex-direction: column;
+    }
   
     .input-group {
       width: 100%;
     }
   
+    input,
+    select {
+      width: 100%;
+    }
+  }
   </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="table_rate_students">
-        <h1>Страница для учеников</h1>
+        <h1>Для учеников</h1>
         <div class="tables">
             <h2>Расписание</h2>
             <el-table :data="shedule">
@@ -25,6 +25,17 @@
                 <el-table-column prop="friday" label="Пятница"/>
             </el-table>
         </div>
+        <div class="tables">
+            <h2>Домашние задания</h2>
+            <div class="table_homework">
+            <el-table :data="homework">
+                <el-table-column prop="date" label="Дата" :formatter="formatDate" />
+                <el-table-column prop="them" label="Тема" />
+                <el-table-column prop="task" label="Задание"  width="160"/>
+                <el-table-column prop="deadline" label="Дата проверки" :formatter="formatDate" />
+            </el-table>
+            </div>
+        </div>
         
     </div>
 </template>
@@ -35,7 +46,7 @@ import {store} from '../store/index.js'
 export default{
     data(){
         return{
-
+            homework: store.state.homework
         }
     },
     
@@ -45,6 +56,13 @@ export default{
         },
         shedule(){
             return store.state.shedule
+        },
+        
+    },
+    methods:{
+        formatDate(row, column, cellValue) {
+            const date = new Date(cellValue.seconds * 1000); // Convert seconds to milliseconds
+            return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear().toString().slice(-2)}`;
         }
     }
 }
@@ -52,13 +70,20 @@ export default{
 
 <style>
 .table_rate_students{
-  
-  width: 80vw;
-  margin: 20px;
-  padding: 10px;
-}
+  height: 100vh;
+  overflow-y: auto;
+  width: 100%;
+  padding: 20px;
+  padding-bottom: 10vh;}
 .tables{
     background-color: #fff;
     margin-top: 20px;
+    margin-bottom: 20px;
+}
+.table_homework{
+  background-color: #fff;
+  
+  margin: 20px;
+  padding: 10px;
 }
 </style>
