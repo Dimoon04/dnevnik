@@ -5,7 +5,7 @@
             <h2>Расписание</h2>
             <el-table :data="shedule">
                 <el-table-column prop="lesson" label="Урок" />
-                <el-table-column prop="date" label="Дата на понедельник" />
+                <!-- <el-table-column prop="date" label="Дата на понедельник" /> -->
                 <el-table-column prop="monday" label="Понедельник" />
                 <el-table-column prop="tuesday" label="Вторник" />
                 <el-table-column prop="wednesday" label="Среда" />
@@ -28,7 +28,7 @@
         <div class="tables">
             <h2>Домашние задания</h2>
             <div class="table_homework">
-            <el-table :data="homework">
+            <el-table :data="sortedHomework">
                 <el-table-column prop="date" label="Дата" :formatter="formatDate" />
                 <el-table-column prop="them" label="Тема" />
                 <el-table-column prop="task" label="Задание"  width="160"/>
@@ -46,17 +46,26 @@ import {store} from '../store/index.js'
 export default{
     data(){
         return{
-            homework: store.state.homework
+            
         }
     },
     
     computed:{
+        sortedHomework() {
+        return [...store.state.homework].sort((a, b) => {
+            return a.date.seconds - b.date.seconds;
+        });
+        },
         students(){
             return store.state.students
         },
         shedule(){
-            return store.state.shedule
-        },
+        return store.state.shedule.sort((a, b) => {
+          if (a.lesson < b.lesson) return -1;
+          if (a.lesson > b.lesson) return 1;
+          return 0;
+        });
+      }
         
     },
     methods:{

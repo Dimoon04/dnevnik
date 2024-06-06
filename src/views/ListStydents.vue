@@ -66,8 +66,6 @@
             friday: this.newStudent.friday
           }
           this.$store.dispatch('addStudent', studentData)
-          
-          
         },
         deleteStudent(scope){
           store.dispatch('delStudent', scope.id)

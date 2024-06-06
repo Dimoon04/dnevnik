@@ -45,8 +45,6 @@ export default {
             }catch(error){
             //   console.log(error.code)
             //   console.log('ошибочно')
-
-
               this.$message({
                 message: 'Неверный логин или пароль!',
                 type: 'warning'

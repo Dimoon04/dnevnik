@@ -5,13 +5,15 @@
       <h1>Расписание</h1>
       <el-table :data="shedule">
         <el-table-column prop="lesson" label="Урок" />
-        <el-table-column prop="date" label="Дата на понедельник" />
+        <!-- <el-table-column prop="date" label="Дата на понедельник" /> -->
         <el-table-column prop="monday" label="Понедельник" />
         <el-table-column prop="tuesday" label="Вторник" />
         <el-table-column prop="wednesday" label="Среда" />
         <el-table-column prop="thursday" label="Четверг" />
         <el-table-column prop="friday" label="Пятница" />
+        
       </el-table>
+      
       <div class="btn-clearShedule">
         <el-button type="danger" @click="clearShedule()">
           Очистить расписание
@@ -35,10 +37,10 @@
         </div>
       </div>
       <div class="form-row">
-        <div class="input-group">
+        <!-- <div class="input-group">
           <label for="date">Дата:</label>
           <input class="input_sdedule" type="date" id="date" v-model="date" />
-        </div>
+        </div> -->
       </div>
       <div class="form-row">
         <div class="input-group">
@@ -76,7 +78,9 @@
 
 <script>
 
-import {mapState} from "vuex"
+import {store} from '../store/index'
+
+// import {mapState} from "vuex"
   export default {
     data(){
       
@@ -94,7 +98,14 @@ import {mapState} from "vuex"
     },
     
     computed:{
-      ...mapState(['shedule'])
+      shedule(){
+        return store.state.shedule.sort((a, b) => {
+          if (a.lesson < b.lesson) return -1;
+          if (a.lesson > b.lesson) return 1;
+          return 0;
+        });
+      }
+      
     },
     // created() {
     //   this.$store.dispatch('fetchShedule')
@@ -133,12 +144,12 @@ import {mapState} from "vuex"
             message: 'Отменено'
           });          
         });
-
-
-
-
-        
+      },
+      deleteShedule(scope){        
+        // Удаление записи из Firebase Realtime Database
+        store.dispatch('delShedule', scope.id)
       }
+
     }
   }
 </script>
@@ -163,9 +174,6 @@ import {mapState} from "vuex"
   .formAddShedule{
     margin: 20px; 
   }
-
-
-
   .form-container {
     display: flex;
     flex-direction: column;
@@ -178,6 +186,7 @@ import {mapState} from "vuex"
   display: flex;
   width: 60vw;
   align-items: center;
+  flex-direction: row;
   gap: 1rem;
 }
 
@@ -198,6 +207,9 @@ select {
 }
 
 @media (max-width>768px) {
+  .form-row{
+    flex-direction: column;
+  }
   
 input,
 select {

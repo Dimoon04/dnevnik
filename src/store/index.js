@@ -51,8 +51,8 @@ export const store = new Vuex.Store({
     },
     ADD_HOME_WORK(state, homeWork) {
       state.homeWorks.push(homeWork)
-    }
-
+    },
+    
   },
   actions: {
     bindRat: firestoreAction(({ bindFirestoreRef }) => {
@@ -78,9 +78,17 @@ export const store = new Vuex.Store({
     delStudent: firestoreAction((context, payload) => {
       return db.collection('students').doc(payload).delete()
     }),
-    delHomeWork: firestoreAction((context, payload) => {
-      return db.collection('students').doc(payload).delete()
+    delShedule: firestoreAction((context, payload) => {
+      return db.collection('shedule').doc(payload).delete(),
+      console.log("урок дален")
+
     }),
+    delHomeWork: firestoreAction((context, payload) => {
+      return db.collection('homework').doc(payload).delete()
+    }),
+    
+
+
     updateStudent: firestoreAction((context, {id, doc}) => {
       db.collection('students')
           .doc(id)
@@ -143,6 +151,17 @@ export const store = new Vuex.Store({
           }
       }catch(error){
           // console.log(error)
+      }
+    },
+    async registerUser({ commit }, { name, password }) {
+      try {
+        const userCredential = await firebase.auth().createUserWithEmailAndPassword(password, password);
+        const user = userCredential.user;
+        commit('setUser', user);
+        // Добавьте дополнительную логику регистрации, если необходимо
+      } catch (error) {
+        console.error(error);
+        // Обработайте ошибку регистрации
       }
     },
     async signout(){

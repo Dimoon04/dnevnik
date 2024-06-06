@@ -5,15 +5,11 @@
       <el-table :data="students">
         <el-table-column prop="fio" label="ФИО" />
         <el-table-column prop="classes" label="Класс"/>
-
-
         <el-table-column prop="monday" label="Понедельник"/>
         <el-table-column prop="tuesday" label="Вторник"/>
         <el-table-column prop="wednesday" label="Среда"/>
         <el-table-column prop="thursday" label="Четверг"/>
         <el-table-column prop="friday" label="Пятница"/>
-
-
         <el-table-column>
           <template slot-scope="scope">
             <el-button type="wrong" size="small" @click="redackStudent(scope.row)">Исправить</el-button>

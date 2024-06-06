@@ -3,12 +3,18 @@
     <h1>Домашние задания</h1>
     
     <div class="table_homework">
-      <el-table :data="homework">
+      <el-table :data="sortedHomework">
         <el-table-column prop="date" label="Дата" :formatter="formatDate" />
         <el-table-column prop="them" label="Тема" />
         <el-table-column prop="task" label="Задание" />
         <el-table-column prop="deadline" label="Дата проверки" :formatter="formatDate" />
+        <el-table-column>
+            <template slot-scope="scope">
+              <el-button type="danger" size="small" @click="deleteHW(scope.row)">выполнено</el-button>
+            </template>
+        </el-table-column>
       </el-table>
+      
     </div>
     <div class="formHhomework">
       <h3>Добавить домашнее задание</h3>
@@ -57,7 +63,7 @@ import {store} from '../store/index.js'
 export default {
   data(){
     return{
-     homework: store.state.homework,
+     
      addHomeWork: {
         date: null,
         them: '',
@@ -67,21 +73,31 @@ export default {
     }
   },
   computed:{
-    
+    sortedHomework() {
+      return [...store.state.homework].sort((a, b) => {
+        return a.date.seconds - b.date.seconds;
+      });
+    }
   },
   methods:{
     onSubmit() {
       this.$store.dispatch('addHomeWork', this.addHomeWork)
-    this.addHomeWork = {
-      date: null,
-      them: '',
-      task: '',
-      deadline: null
-    }
-  },
+      this.addHomeWork = {
+        date: null,
+        them: '',
+        task: '',
+        deadline: null
+      }
+    },
     formatDate(row, column, cellValue) {
       const date = new Date(cellValue.seconds * 1000); // Convert seconds to milliseconds
       return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear().toString().slice(-2)}`;
+    },
+    deleteHW(row) {
+      const hwToDelete = store.state.homework.find(hw => hw.id === row.id);
+      if (hwToDelete) {
+        this.$store.dispatch('delHomeWork', hwToDelete.id);
+      }
     }
   }
 }
